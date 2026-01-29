@@ -1,27 +1,45 @@
-m = a**b
-print(m)
-# a  =a + 5
-# Operator examples
-a = 7
-b = 5
+# 1. Initialize variables
+# We can store subject names in a list to make the input process cleaner
+subjects = ["English", "Math", "Science", "History", "Computer"]
+marks = []
+max_marks_per_subject = 100
 
-m = a ** b
-print('a ** b =', m)
+print("Enter marks obtained in 5 subjects (out of 100):")
 
-# a = a + 5  -> using +=
-a += 5
-print('a after +=5 ->', a)
+# 2. Get input for each subject
+for subject in subjects:
+    # Input validation loop (optional but good practice)
+    while True:
+        try:
+            score = float(input(f"  {subject}: "))
+            if 0 <= score <= max_marks_per_subject:
+                marks.append(score)
+                break
+            else:
+                print("    Please enter a valid score between 0 and 100.")
+        except ValueError:
+            print("    Invalid input. Please enter a number.")
 
-# b = b - 2  -> using -=
-b -= 2
-print('b after -=2 ->', b)
+# 3. Calculate Total and Percentage
+total_marks = sum(marks)
+max_total_marks = max_marks_per_subject * len(subjects)
+percentage = (total_marks / max_total_marks) * 100
 
-# Comparison examples
-print('a <= b ->', a <= b)
-print('a >= b or b > a ->', a >= b or b > a)
+# 4. Display Results
+print("\n--- Results ---")
+print(f"Total Marks Obtained: {total_marks} / {max_total_marks}")
+print(f"Percentage: {percentage:.2f}%")
 
-# Read a number and show its type
-M = float(input("enter the number: "))
-print(type(M), M)
+# Optional: Add a grade based on percentage
+if percentage >= 90:
+    grade = 'A+'
+elif percentage >= 80:
+    grade = 'A'
+elif percentage >= 70:
+    grade = 'B'
+elif percentage >= 60:
+    grade = 'C'
+else:
+    grade = 'D'
 
-# List operations (examples): insert, remove, append, len, pop, clear
+print(f"Grade: {grade}")
